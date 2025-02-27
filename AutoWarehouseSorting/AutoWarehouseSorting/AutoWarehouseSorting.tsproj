@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.44">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{4D89CBE1-FDEB-4D58-AC05-0CF234E9446F}" PersistentType="true">AlarmsAndEvents</Name>
+			<DisplayName TxtId=""><![CDATA[New event class for alarms and events]]></DisplayName>
+			<EventId>
+				<Name Id="1">Estop</Name>
+				<DisplayName TxtId=""><![CDATA[Estop triggered]]></DisplayName>
+				<Severity>Info</Severity>
+				<CauseRemedy Idx="1">
+					<Cause TxtId=""><![CDATA[Estop Triggered]]></Cause>
+					<Remedy TxtId=""><![CDATA[Clear the estop and reset]]></Remedy>
+				</CauseRemedy>
+			</EventId>
+			<Hides>
+				<Hide GUID="{13A1BAE7-42AB-4957-B783-2D4514A880AF}"/>
+				<Hide GUID="{9B0976EF-B697-438E-83AE-BD2D91FFE7A9}"/>
+			</Hides>
+		</DataType>
+	</DataTypes>
+	<Project ProjectGUID="{57F8BA19-8780-4CD1-9736-A9D92A0083DC}" Target64Bit="true" ShowHideConfigurations="#x106">
+		<System>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{5CC60DA4-EAF0-4D98-AEA9-3017B4A177BB}" Name="AutoWarehouseSort" PrjFilePath="AutoWarehouseSort\AutoWarehouseSort.plcproj" TmcFilePath="AutoWarehouseSort\AutoWarehouseSort.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{64546A9E-5C33-FB4C-E360-92C477783AA8}">
+					<Name>AutoWarehouseSort Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Contexts>
+						<Context>
+							<Id NeedCalleeCall="true">0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+	</Project>
+</TcSmProject>
