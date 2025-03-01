@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ConfirmableAlarmWithArguments" Id="{dc15ed02-b234-47d5-827f-751c1c4fe3d6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ConfirmableAlarmWithArguments
+VAR
+	bIsInitialized : BOOL;
+	fbAlarm : FB_TcAlarm;
+	bRaiseAlarm : BOOL;
+	bClearAlarm : BOOL;
+	bConfirmAlarm : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bIsInitialized THEN
+	bIsInitialized := TRUE;
+	fbAlarm.CreateEx(TC_Events.AlarmsAndEvents.Stop, TRUE, 0);
+END_IF
+
+IF bRaiseAlarm THEN
+	bRaiseAlarm := FALSE;
+	fbAlarm.ipArguments.Clear().AddString('Alice');
+	fbAlarm.Raise(0);
+END_IF
+
+IF bConfirmAlarm THEN
+	bConfirmAlarm := FALSE;
+	fbAlarm.Confirm(0);
+END_IF
+
+IF bClearAlarm THEN
+	bClearAlarm := FALSE;
+	fbAlarm.Clear(0, FALSE);
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="ConfirmableAlarmWithArguments">
+      <LineId Id="5" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="34" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <Task Name="PlcTask" Id="{3152baae-22d0-4898-b557-230339310a5f}">
     <!--CycleTime in micro seconds.-->
     <CycleTime>10000</CycleTime>
@@ -7,11 +7,16 @@
     <PouCall>
       <Name>MAIN</Name>
     </PouCall>
+    <PouCall>
+      <Name>ConfirmableAlarmWithArguments</Name>
+    </PouCall>
+    <PouCall>
+      <Name>AlarmWithCustomSourceInfo</Name>
+    </PouCall>
     <TaskFBGuid>{19f8373c-62c8-4f6c-9094-0d6498a31253}</TaskFBGuid>
     <Fb_init>{03ca11bf-7fe7-48ab-a215-ee081f0154cc}</Fb_init>
     <Fb_exit>{2056be8b-e53c-4a08-b9f8-2712db024ce4}</Fb_exit>
     <CycleUpdate>{8e6795c2-97b9-4c61-a88e-73eb024e010a}</CycleUpdate>
     <PostCycleUpdate>{17b22631-6356-4064-9ba7-406a2f331ad3}</PostCycleUpdate>
-    <ObjectProperties />
   </Task>
 </TcPlcObject>

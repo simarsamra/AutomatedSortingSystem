@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="AlarmWithCustomSourceInfo" Id="{f7370888-cc6b-4b2d-b485-be48274722cd}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AlarmWithCustomSourceInfo
+VAR
+	bIsInitalized : BOOL;
+    fbAlarm : FB_TcAlarm;
+    bRaiseAlarm : BOOL;
+    bClearAlarm : BOOL;
+    fbSourceInfo : FB_TcSourceInfo;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bIsInitalized THEN
+    bIsInitalized := TRUE;
+    fbSourceInfo.Clear();
+    fbSourceInfo.sName := 'Water pump 3';
+    fbAlarm.CreateEx(TC_Events.AlarmsAndEvents.Stop, FALSE, fbSourceInfo);
+END_IF
+
+IF bRaiseAlarm THEN
+    bRaiseAlarm := FALSE;
+    fbAlarm.ipArguments.Clear().AddString('Bob');
+    fbAlarm.Raise(0);
+END_IF
+
+IF bClearAlarm THEN
+    bClearAlarm := FALSE;
+    fbAlarm.Clear(0, TRUE);
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="AlarmWithCustomSourceInfo">
+      <LineId Id="11" Count="4" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="17" Count="4" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="23" Count="3" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
