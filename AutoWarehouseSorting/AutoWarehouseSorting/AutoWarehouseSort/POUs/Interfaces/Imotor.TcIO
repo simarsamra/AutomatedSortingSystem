@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="Imotor" Id="{75a4f806-4e53-43be-b637-b05eaf11f7ef}">
+    <Declaration><![CDATA[INTERFACE Imotor
+]]></Declaration>
+    <Property Name="error" Id="{7574cc5d-08be-4d25-9e18-c7f725a5c3ee}">
+      <Declaration><![CDATA[PROPERTY error : bool]]></Declaration>
+      <Get Name="Get" Id="{66504c63-cf26-4f66-8dab-32209f94ce5c}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{6fbc2fc2-bcfa-4ac8-913c-48b1b3df2894}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="run" Id="{aba3c462-42c5-4efe-981f-4971d8d236c5}">
+      <Declaration><![CDATA[METHOD run : BOOL
+
+]]></Declaration>
+    </Method>
+    <Property Name="running" Id="{4f14fadd-fc2e-433d-84eb-c6ff3a2dcbfe}">
+      <Declaration><![CDATA[PROPERTY running : bool]]></Declaration>
+      <Get Name="Get" Id="{9ad8f65e-97a6-4abe-897c-c98837dead15}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{04fc6342-18e5-414c-8809-9ea184f16158}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Method Name="status" Id="{2dcb4e3a-65cc-499d-ab4f-66ebed2dfccd}">
+      <Declaration><![CDATA[METHOD status : BOOL
+
+]]></Declaration>
+    </Method>
+    <Method Name="stop" Id="{a00217d8-133a-4b2c-85e8-55e9900fe693}">
+      <Declaration><![CDATA[METHOD stop : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

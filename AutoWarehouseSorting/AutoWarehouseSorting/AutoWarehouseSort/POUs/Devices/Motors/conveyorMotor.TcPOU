@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="conveyorMotor" Id="{921ba089-8039-4ce0-bc80-c9e7a1b5860e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK conveyorMotor IMPLEMENTS Imotor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bStartMotor : BOOL := FALSE;
+	bStopMotor : BOOL := TRUE;
+	bPauseMotor : BOOL := FALSE;
+	eStates : eMotorStates := eMotorStates.firstrun;
+	isMotorRunning : BOOL :=  FALSE;
+	isError : BOOL := FALSE;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE eStates OF
+	eMotorStates.firstrun :
+		IF bStartMotor THEN
+			eStates := eMotorStates.starting;
+		END_IF
+	eMotorStates.starting:
+		IF NOT bStopMotor THEN
+			run();
+			eStates := eMotorStates.running;
+			isMotorRunning := TRUE;
+		END_IF
+	eMotorStates.running:
+		IF bStopMotor THEN
+			stop();
+			isMotorRunning := FALSE;	
+			eStates := eMotorStates.stopped;
+		END_IF
+		IF bPauseMotor THEN
+			eStates := eMotorStates.pause;
+		END_IF
+	eMotorStates.stopped:
+		IF bStartMotor AND NOT bStopMotor THEN
+			eStates := eMotorStates.running;
+		END_IF
+	eMotorStates.pause:
+		MpauseMotor();
+		eStates := eMotorStates.paused;
+	eMotorStates.paused:
+		IF bStartMotor AND NOT bStopMotor THEN
+			eStates := eMotorStates.running;
+		END_IF
+		IF  bStopMotor THEN
+			eStates := eMotorStates.stopping;
+		END_IF
+END_CASE
+]]></ST>
+    </Implementation>
+    <Property Name="error" Id="{efb640a5-e410-4653-b55f-d74c91aea802}">
+      <Declaration><![CDATA[
+PROPERTY error : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{d1906029-831f-4979-b1b9-2f57c10aea24}">
+        <Declaration><![CDATA[VAR
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[error := isError;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{63ce1efd-1b68-4c90-b17a-50f50b2435e5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isError := error;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="MpauseMotor" Id="{1d2c00e0-cf18-4bc9-a33b-a67066c79e72}">
+      <Declaration><![CDATA[METHOD MpauseMotor : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="run" Id="{8b17afdc-ad0f-4a5a-808b-4d4e3db20b53}">
+      <Declaration><![CDATA[METHOD run : BOOL
+VAR
+	bRunMotor: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bRunMotor := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="running" Id="{7bbaea36-2752-4125-9591-ec8d8ed77f24}">
+      <Declaration><![CDATA[
+PROPERTY running : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{63f7e8ce-2270-4570-a58a-d3dd0e655874}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[running := isMotorRunning;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{d289d6aa-5919-4702-89ec-f8c66608b96e}">
+        <Declaration><![CDATA[VAR
+	bSimRun : BOOL := False;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isMotorRunning := running;
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="status" Id="{62b3d55e-d329-4e80-9fff-95eab784407d}">
+      <Declaration><![CDATA[METHOD status : BOOL
+VAR
+	fbAlarm	: Tc3_EventLogger.FB_TcAlarm;
+	bRaiseAlarm	: BOOL;
+	bClearAlarm	: BOOL;
+	bConfirmAlarm	: BOOL;
+	fbSourceInfo	: Tc3_EventLogger.FB_TcSourceInfo;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bRaiseAlarm := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="stop" Id="{812382a9-ef82-4a69-985d-831d64299f4b}">
+      <Declaration><![CDATA[METHOD stop : BOOL
+VAR
+	bStopM : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bStopM := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="conveyorMotor">
+      <LineId Id="22" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="2" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="52" Count="3" />
+      <LineId Id="47" Count="3" />
+      <LineId Id="59" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.error.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.error.Set">
+      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.MpauseMotor">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.run">
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.running.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.running.Set">
+      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.status">
+      <LineId Id="9" Count="1" />
+    </LineIds>
+    <LineIds Name="conveyorMotor.stop">
+      <LineId Id="4" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

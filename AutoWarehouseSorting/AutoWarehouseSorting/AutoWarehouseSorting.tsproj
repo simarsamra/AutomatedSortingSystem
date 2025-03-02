@@ -2,7 +2,7 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.56">
 	<DataTypes>
 		<DataType>
-			<Name GUID="{656299F6-CC7B-4572-B1DE-A884ED1BF7D4}" PersistentType="true">AlarmsAndEvents</Name>
+			<Name GUID="{38EFD0CA-DA5F-44C5-974D-0466F90F6CE0}" PersistentType="true">AlarmsAndEvents</Name>
 			<DisplayName TxtId=""><![CDATA[New event class for alarms and events]]></DisplayName>
 			<EventId>
 				<Name Id="1">Estop</Name>
@@ -18,10 +18,16 @@
 				<DisplayName TxtId=""><![CDATA[Process is stopped by {0}.]]></DisplayName>
 				<Severity>Warning</Severity>
 			</EventId>
+			<EventId>
+				<Name Id="3">MotorStarted</Name>
+				<DisplayName TxtId=""><![CDATA[{} Motor started.]]></DisplayName>
+				<Severity>Verbose</Severity>
+			</EventId>
 			<Hides>
 				<Hide GUID="{13A1BAE7-42AB-4957-B783-2D4514A880AF}"/>
 				<Hide GUID="{9B0976EF-B697-438E-83AE-BD2D91FFE7A9}"/>
 				<Hide GUID="{4D89CBE1-FDEB-4D58-AC05-0CF234E9446F}"/>
+				<Hide GUID="{656299F6-CC7B-4572-B1DE-A884ED1BF7D4}"/>
 			</Hides>
 		</DataType>
 	</DataTypes>
@@ -35,7 +41,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{5CC60DA4-EAF0-4D98-AEA9-3017B4A177BB}" Name="AutoWarehouseSort" PrjFilePath="AutoWarehouseSort\AutoWarehouseSort.plcproj" TmcFilePath="AutoWarehouseSort\AutoWarehouseSort.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{821CB4B5-7CB5-F47D-7756-53E722FB8679}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="AutoWarehouseSort\AutoWarehouseSort.tmc" TmcHash="{C14AE68B-F3C3-9496-8196-567D07E82D8A}">
 					<Name>AutoWarehouseSort Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

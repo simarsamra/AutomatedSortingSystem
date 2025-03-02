@@ -17,10 +17,19 @@
     <LibraryReferences>{60ca0199-ab87-4896-9133-277c32bab586}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\eMotorStates.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\AlarmWithCustomSourceInfo.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Devices\Motors\conveyorMotor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Interfaces\Imotor.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -32,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
-    <Folder Include="DUTs\Interfaces" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\Devices" />
+    <Folder Include="POUs\Devices\Motors" />
+    <Folder Include="POUs\Interfaces" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
